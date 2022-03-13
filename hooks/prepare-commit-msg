@@ -1,0 +1,10 @@
+#!/bin/bash
+
+MESSAGE=$(cat $1) 
+REGEX="^(feat|fix|docs|style|refactor|test|chore|perf|other)(\((.)\))?: (.)[a-zA-Z\s-]*+$"
+
+if ! [[ "$MESSAGE" =~ $REGEX ]]; then
+  echo "Your commit were rejected, because your message doesn't follow the defined defaults." 
+  echo "(feat|fix|docs|style|refactor|test|chore|perf|other):something"
+  exit 1
+fi
