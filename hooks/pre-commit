@@ -1,0 +1,10 @@
+#!/bin/bash
+
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+REGEX="^(feature|bugfix|release|hotfix)\/[a-z0-9._-]+$"
+
+if ! [[ $BRANCH =~ $REGEX ]]; then
+  echo "Your commits were rejected, because it doesn't follow the defined standards."
+  echo "(feature|bugfix|release|hotfix)/something"
+  exit 1
+fi
